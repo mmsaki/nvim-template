@@ -35,5 +35,20 @@ require('lazy').setup({
   },
 })
 
+-- lsp
+-- configurations for all tables found in lsp/<name>.lua
+vim.lsp.config('*', {
+  capabilities = {
+    textDocument = {
+      semanticTokens = {
+        multilineTokenSupport = true,
+      }
+    }
+  },
+  root_markers = { '.git' },
+})
+
+vim.lsp.enable('luals')
+
 -- The line beneath this is called . See 
 -- vim: ts=2 sts=2 sw=2 et
