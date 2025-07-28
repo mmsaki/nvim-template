@@ -1,3 +1,7 @@
 return {
-	'wesleimp/stylua.nvim'
+  "wesleimp/stylua.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "neovim/nvim-lspconfig",
+  },
 }
