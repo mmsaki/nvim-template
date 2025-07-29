@@ -1,0 +1,10 @@
+tap 'homebrew/bundle'
+
+brew 'neovim'
+brew 'lua-language-server'
+brew 'vscode-langservers-extracted'
+brew 'pyright'
+brew 'ruff'
+brew 'stylua'
+brew 'markdownlint-cli2'
+brew 'markdown-oxide'
