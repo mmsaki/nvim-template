@@ -1,3 +1,5 @@
+-- requires markdownlin in $PATH
+-- brew install markdownlint-cli2
 return {
   cmd = { "markdown-oxide" },
   root_markers = { ".git" },

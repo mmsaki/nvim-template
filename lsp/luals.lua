@@ -1,3 +1,6 @@
+-- Requires these in $PATH
+-- brew install lua-language-server
+-- brew install stylua
 return {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
