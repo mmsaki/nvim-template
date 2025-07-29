@@ -11,10 +11,16 @@ return {
     "selene.yml",
     ".git",
   },
-  on_attach = function()
+  on_attach = function(_, bufnr)
+    local group_name = "StyluaFormat_" .. bufnr
+    local group = vim.api.nvim_create_augroup(group_name, { clear = true })
+    local stylua = require("stylua")
     vim.api.nvim_create_autocmd("BufWritePre", {
+      group = group,
+      buffer = bufnr,
       callback = function()
-        require("stylua").format()
+        stylua.format()
+        print("[Stylua] formatted buffer " .. bufnr)
       end,
     })
   end,

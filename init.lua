@@ -56,12 +56,13 @@ vim.lsp.config("*", {
 })
 
 vim.lsp.enable("luals")
+vim.lsp.enable("markdown")
+-- vim.lsp.enable("solc-ls")
+-- vim.lsp.enable("forgefmt")
 -- vim.lsp.enable("json")
 -- vim.lsp.enable("pyright")
 -- vim.lsp.enable("ruff")
--- vim.lsp.enable("solc-ls")
 -- vim.lsp.enable("solc")
 -- vim.lsp.enable("solidity_ls_nomicfoundation")
 
--- The line beneath this is called . See
 -- vim: ts=2 sts=2 sw=2 et
