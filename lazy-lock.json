@@ -1,5 +1,5 @@
 {
-  "forgefmt.nvim": { "branch": "main", "commit": "cef0fe29fd23d22f4e401d7686d99535131f8009" },
+  "forgefmt.nvim": { "branch": "main", "commit": "34f201a8abdf3fb191b37b87e29a2841f0af127f" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lspsaga.nvim": { "branch": "main", "commit": "8efe00d6aed9db6449969f889170f1a7e43101a1" },
   "nvim-lspconfig": { "branch": "master", "commit": "4d3b3bb8815fbe37bcaf3dbdb12a22382bc11ebe" },

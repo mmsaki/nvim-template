@@ -1,3 +1,5 @@
+-- requires ruff installed
+-- brew install ruff
 return {
   cmd = { "ruff", "server" },
   filetypes = { "python" },

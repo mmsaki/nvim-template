@@ -1,3 +1,5 @@
+-- requires vscode-json-language-server in $PATH
+-- brew install vscode-langservers-extracted
 return {
   cmd = { "vscode-json-language-server", "--stdio" },
   filetypes = { "json", "jsonc" },

@@ -1,3 +1,5 @@
+-- requires pyright language server installed
+-- brew install pyright
 local function set_python_path(path)
   local clients = vim.lsp.get_clients({
     bufnr = vim.api.nvim_get_current_buf(),
