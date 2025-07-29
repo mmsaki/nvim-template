@@ -58,7 +58,6 @@ vim.lsp.config("*", {
 vim.lsp.enable("luals")
 vim.lsp.enable("markdown")
 -- vim.lsp.enable("solc-ls")
--- vim.lsp.enable("forgefmt")
 -- vim.lsp.enable("json")
 -- vim.lsp.enable("pyright")
 -- vim.lsp.enable("ruff")

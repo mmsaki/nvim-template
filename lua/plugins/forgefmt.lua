@@ -3,6 +3,7 @@ return {
   config = function()
     require("forgefmt").setup({
       auto_format = true, -- enable autoformat on save
+      use_shafu = false,
     })
     vim.keymap.set("n", "<leader>f", ":ForgeFmt<CR>", { desc = "Forge Format" })
   end,
