@@ -1,14 +1,10 @@
 # Neovim Template
 
-Manual nvim template setup.
-
 ## Install
 
-Install all required language servers and formatters to $PATH
+> All required intalls are listed here [`./brewfile`](./brewfile)
 
-> If brew installed, list all required intalls in [`brewfile`](./brewfile)
-
-Run:
+Run to install LPS servers and formatters:
 
 ```sh
 brew bundle
