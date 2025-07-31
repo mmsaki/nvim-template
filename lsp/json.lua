@@ -13,7 +13,7 @@ return {
       },
     },
   },
-  on_attach = function(client, bufnr)
+  on_attach = function(_, _)
     vim.api.nvim_create_autocmd("BufWritePre", {
       callback = function()
         vim.lsp.buf.format()
