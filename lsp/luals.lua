@@ -14,8 +14,15 @@ return {
     "selene.yml",
     ".git",
   },
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
   on_attach = function(_, bufnr)
-    local group_name = "StyluaFormat_" .. bufnr
+    local group_name = "StyluaFormat"
     local group = vim.api.nvim_create_augroup(group_name, { clear = true })
     local stylua = require("stylua")
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -23,7 +30,6 @@ return {
       buffer = bufnr,
       callback = function()
         stylua.format()
-        print("[Stylua] formatted buffer " .. bufnr)
       end,
     })
   end,
