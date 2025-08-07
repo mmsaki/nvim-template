@@ -21,6 +21,7 @@ vim.g.maplocalleader = " "
 require("lazy").setup({
   "tpope/vim-sleuth",
   { import = "plugins" },
+  { import = "custom" },
   change_detection = { notify = false },
 }, {
   ui = {
