@@ -13,7 +13,7 @@ vim.lsp.config("*", {
 vim.lsp.enable("c")
 vim.lsp.enable("forge_lsp")
 vim.lsp.enable("js")
-vim.lsp.enable("json")
+-- vim.lsp.enable("json")
 vim.lsp.enable("luals")
 vim.lsp.enable("markdown")
 vim.lsp.enable("pyright")
@@ -23,6 +23,7 @@ vim.lsp.enable("tailwindcss")
 vim.lsp.enable("toml")
 vim.lsp.enable("ty")
 vim.lsp.enable("swift")
+vim.lsp.enable("biome")
 -- vim.lsp.enable("wake_lsp")
 -- vim.lsp.enable("solidity_ls_nomicfoundation")
 -- vim.lsp.enable("solc")
@@ -30,6 +31,7 @@ vim.lsp.enable("swift")
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
   callback = function(event)
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
     local keymap = function(keys, func, desc, mode)
       mode = mode or "n"
       vim.keymap.set(
@@ -60,12 +62,30 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
     end
 
+    if client.name == "biome" then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = vim.api.nvim_create_augroup("BiomeFixAll", { clear = true }),
+        callback = function()
+          -- fmt: auto format
+          vim.lsp.buf.format()
+
+          -- fix: code actions
+          vim.lsp.buf.code_action({
+            context = {
+              only = { "source.fixAll.biome" },
+              diagnostics = {},
+            },
+            apply = true,
+          })
+        end,
+      })
+    end
+
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
     --    See `:help CursorHold` for information about when this is executed
     --
     -- When you move your cursor, the highlights will be cleared (the second autocommand).
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
     if
       client
       and client_supports_method(
