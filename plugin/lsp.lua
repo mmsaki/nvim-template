@@ -12,7 +12,7 @@ vim.lsp.config("*", {
 
 vim.lsp.enable("biome")
 vim.lsp.enable("c")
-vim.lsp.enable("cssls")
+-- vim.lsp.enable("cssls")
 vim.lsp.enable("forge_lsp")
 vim.lsp.enable("js")
 vim.lsp.enable("luals")
