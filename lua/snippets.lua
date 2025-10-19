@@ -117,3 +117,30 @@ ls.add_snippets("lua", {
     })
   ),
 })
+
+ls.add_snippets("solidity", {
+  s("spdx", fmt([[// SPDX-License-Identifier: {}]], {
+    c(1, {
+      t("UNLICENSED"),
+      t("MIT"),
+      t("BUSL-1.1"),
+      t("CC-BY-3.0-US"),
+    }),
+  })),
+  s("pragma", fmt([[pragma solidity {};]], {
+    c(1, {
+      t("0.8.30"),
+      t("0.8.29"),
+    })
+  })),
+  s("im", fmt([[import {{ {} }} from "{}";]], {
+    i(1),
+    i(2),
+  })),
+  s("ae", fmt([[assertEq({});]], {
+    i(1),
+  })),
+  s("console", fmt([[console.log({});]], {
+    i(1),
+  })),
+})
