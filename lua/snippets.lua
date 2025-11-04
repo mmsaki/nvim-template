@@ -32,13 +32,32 @@ ls.filetype_extend(
 )
 
 ls.add_snippets("typescript", {
-  s( "fn", fmt( [[function {}({}) {{ {} }}]], { i(1), i(2), i(3), })),
-  s( "im", fmt( [[import {{ {} }} from "{}";]], { i(1), i(2) })),
+  s("fn", fmt([[function {}({}) {{ {} }}]], { i(1), i(2), i(3) })),
+  s("ec", fmt([[export const {} = {};]], { i(1), i(2) })),
+  s("map", fmt([[{}.map(({}) => {{ {} }})]], { i(1), i(2), i(3) })),
+  s("c", fmt([[const {} = {};]], { i(1), i(2) })),
+  s(
+    "et",
+    fmt(
+      [[export type {} = {} {};]],
+      { i(1), c(2, { t("keyof"), t("typeof") }), i(3) }
+    )
+  ),
+  s(
+    "im",
+    fmt([[import {} from "{}";]], {
+      c(1, {
+        fmt("{{ {} }}", { i(1) }),
+        fmt("{}", { i(1) }),
+      }),
+      i(2),
+    })
+  ),
   s(
     "story",
     fmt(
       [[import type {{ Meta, StoryObj }} from '@storybook/{}';
-import {{ {component} }} from './{component}';
+import {{ {component} }} from '@/{}/{component}';
  
 const meta = {{
   title: "components/{component}",
@@ -61,12 +80,36 @@ export const {}: Story = {{
           t("react-vite"),
         }),
         component = i(2), -- import name
-        i(3), -- props
-        i(4, "Primary"), -- variant name
-        i(5),
+        i(3),
+        i(4), -- props
+        i(5, "Primary"), -- variant name
+        i(6),
       },
       {
         repeat_duplicates = true,
+      }
+    )
+  ),
+  s(
+    "switch",
+    fmt(
+      [[switch ({}) {{
+    case {}:
+      {}
+      break;
+    case {}:
+      {}
+      break;
+    default:
+      {}
+  }}]],
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(4),
+        i(5),
+        i(6),
       }
     )
   ),
@@ -76,7 +119,13 @@ ls.add_snippets("typescriptreact", {
   s("div", fmt([[<div {}>{}</div>]], { i(1), i(2) })),
   s("p", fmt([[<p {}>{}</p>]], { i(1), i(2) })),
   s("a", fmt([[<a {}>{}</a>]], { i(1), i(2) })),
-  s("button", fmt([[<button type="{}" {}>{}</button>]], { c(1, { t("button"), t("submit")}), i(2), i(3) })),
+  s(
+    "button",
+    fmt(
+      [[<button type="{}" {}>{}</button>]],
+      { c(1, { t("button"), t("submit") }), i(2), i(3) }
+    )
+  ),
   s("canvas", fmt([[<canvas {}>{}</canvas>]], { i(1), i(2) })),
   s("span", fmt([[<span {}>{}</span>]], { i(1), i(2) })),
   s("body", fmt([[<body {}>{}</body>]], { i(1), i(2) })),
@@ -95,16 +144,30 @@ ls.add_snippets("typescriptreact", {
   s("article", fmt([[<article {}>{}</article>]], { i(1), i(2) })),
   s("aside", fmt([[<aside {}>{}</aside>]], { i(1), i(2) })),
   s("audio", fmt([[<audio src="{}">{}</audio>]], { i(1), i(2) })),
-  s("blockquote", fmt([[<blockquote cite="{}">{}</blockquote>]], { i(1), i(2) })),
+  s(
+    "blockquote",
+    fmt([[<blockquote cite="{}">{}</blockquote>]], { i(1), i(2) })
+  ),
   s("b", fmt([[<b {}>{}</b>]], { i(1), i(2) })),
-  s("map", fmt([[<map name="{}">{}</map>]], { i(1), i(2) })),
-  s("area", fmt([[<area shape="{}" coords="{}" href="{}" alt="{}">{}</area>]], { i(1), i(2), i(3), i(4), i(5) })),
+  s(
+    "area",
+    fmt(
+      [[<area shape="{}" coords="{}" href="{}" alt="{}">{}</area>]],
+      { i(1), i(2), i(3), i(4), i(5) }
+    )
+  ),
   s("hr", fmt([[<hr {}>]], { i(1) })),
   s("br", fmt([[<br {}/>]], { i(1) })),
-  s("class", fmt([[className="{}"]], { i(1), })),
-  s("style", fmt([[style={{{{
+  s("class", fmt([[className="{}"]], { i(1) })),
+  s(
+    "style",
+    fmt(
+      [[style={{{{
   {}
-  }}}}]], { i(1), })),
+  }}}}]],
+      { i(1) }
+    )
+  ),
 })
 
 ls.add_snippets("css", {
@@ -118,6 +181,7 @@ ls.add_snippets("css", {
       i(2),
     })
   ),
+  s("im", fmt([[@import "./{}";]], { i(1) })),
   s(
     "@theme",
     fmt(
@@ -143,35 +207,53 @@ ls.add_snippets("lua", {
 })
 
 ls.add_snippets("solidity", {
-  s("spdx", fmt([[// SPDX-License-Identifier: {}]], {
-    c(1, {
-      t("UNLICENSED"),
-      t("MIT"),
-      t("BUSL-1.1"),
-      t("CC-BY-3.0-US"),
-    }),
-  })),
-  s("pragma", fmt([[pragma solidity {};]], {
-    c(1, {
-      t("0.8.30"),
-      t("0.8.29"),
+  s(
+    "spdx",
+    fmt([[// SPDX-License-Identifier: {}]], {
+      c(1, {
+        t("UNLICENSED"),
+        t("MIT"),
+        t("BUSL-1.1"),
+        t("CC-BY-3.0-US"),
+      }),
     })
-  })),
-  s("im", fmt([[import {{ {} }} from "{}";]], {
-    i(1),
-    i(2),
-  })),
-  s("ae", fmt([[assertEq({});]], {
-    i(1),
-  })),
-  s("console", fmt([[console.log({});]], {
-    i(1),
-  })),
+  ),
+  s(
+    "pragma",
+    fmt([[pragma solidity {};]], {
+      c(1, {
+        t("0.8.30"),
+        t("0.8.29"),
+      }),
+    })
+  ),
+  s(
+    "im",
+    fmt([[import {{ {} }} from "{}";]], {
+      i(1),
+      i(2),
+    })
+  ),
+  s(
+    "ae",
+    fmt([[assertEq({});]], {
+      i(1),
+    })
+  ),
+  s(
+    "console",
+    fmt([[console.log({});]], {
+      i(1),
+    })
+  ),
 })
 
 ls.add_snippets("python", {
-  s("im", fmt([[from {} import {}]], {
-    i(1),
-    i(2),
-  })),
+  s(
+    "im",
+    fmt([[from {} import {}]], {
+      i(1),
+      i(2),
+    })
+  ),
 })
