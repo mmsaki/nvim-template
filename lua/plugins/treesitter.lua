@@ -16,6 +16,7 @@ return { -- Highlight, edit, and navigate code
       "vimdoc",
       "solidity",
       "rust",
+      "swift",
     },
     auto_install = true,
     highlight = {
