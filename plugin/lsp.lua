@@ -66,8 +66,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = vim.api.nvim_create_augroup("BiomeFixAll", { clear = true }),
         callback = function()
-          -- Run biome format directly to ensure it uses project config
-          vim.fn.system("biome format --write " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+          -- fmt: auto format
+          vim.lsp.buf.format()
+
+          -- fix: code actions
+          vim.lsp.buf.code_action({
+            context = {
+              only = { "source.fixAll.biome" },
+              diagnostics = {},
+            },
+            apply = true,
+          })
         end,
       })
     end
