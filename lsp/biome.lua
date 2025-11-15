@@ -1,5 +1,7 @@
+local util = require("lspconfig.util")
+
 return {
-  cmd =  { "biome" },
+  cmd = { "biome", "lsp-proxy" },
   filetypes = {
     "astro",
     "css",
