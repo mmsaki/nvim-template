@@ -33,6 +33,44 @@ ls.filetype_extend(
 
 ls.add_snippets("typescript", {
   s("fn", fmt([[function {}({}) {{ {} }}]], { i(1), i(2), i(3) })),
+  s("fn*", fmt([[function* {}({}) {{ {} }}]], { i(1), i(2), i(3) })),
+
+  s(
+    "for",
+    fmt("{}", {
+      c(1, {
+        fmt(
+          [[for (const {} of {}) {{
+{}
+}}]],
+          {
+            i(1, "value"),
+            i(2, "array"),
+            i(3, ""),
+          }
+        ),
+        fmt(
+          [[for (let {} = {}; {} < {}; {}++) {{
+{}
+}}]],
+          {
+            i(1, "i"),
+            i(2, "0"),
+            i(3, "i"),
+            i(4, "array.length"),
+            i(5, "i"),
+            i(6, ""),
+          }
+        ),
+      }),
+    })
+  ),
+  s(
+    "console",
+    fmt([[console.log({});]], {
+      i(1),
+    })
+  ),
   s("ec", fmt([[export const {} = {};]], { i(1), i(2) })),
   s("map", fmt([[{}.map(({}) => {{ {} }})]], { i(1), i(2), i(3) })),
   s("c", fmt([[const {} = {};]], { i(1), i(2) })),
