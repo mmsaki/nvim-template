@@ -6,66 +6,66 @@ local function is_dark_mode()
 end
 
 return {
-  -- "catppuccin/nvim",
-  -- dependencies = {
-  --   {
-  --     "ellisonleao/gruvbox.nvim",
-  --     lazy = false,
-  --     priority = 1000,
-  --     config = true,
-  --   },
-  -- },
-  -- name = "catppuccin",
-  -- lazy = false,
-  -- priority = 1000,
-  -- config = function()
-  --   local dark_mode = is_dark_mode()
-  --   dark_mode = true -- Force dark mode for testing purposes
-  --
-  --   if dark_mode then
-  --     require("catppuccin").setup({
-  --       background = {
-  --         dark = "mocha",
-  --       },
-  --       color_overrides = {
-  --         mocha = {
-  --           -- base = "#000000",
-  --           -- mantle = "#000000",
-  --           -- crust = "#000000",
-  --         },
-  --       },
-  --     })
-  --     vim.cmd.colorscheme("catppuccin")
-  --   else
-  --     require("gruvbox").setup({
-  --       terminal_colors = true, -- add neovim terminal colors
-  --       undercurl = true,
-  --       underline = true,
-  --       bold = true,
-  --       italic = {
-  --         strings = true,
-  --         emphasis = true,
-  --         comments = true,
-  --         operators = false,
-  --         folds = true,
-  --       },
-  --       strikethrough = true,
-  --       invert_selection = false,
-  --       invert_signs = false,
-  --       invert_tabline = false,
-  --       inverse = true, -- invert background for search, diffs, statuslines and errors
-  --       contrast = "hard", -- can be "hard", "soft" or empty string
-  --       palette_overrides = {},
-  --       -- overrides = {
-  --       --   ['@lsp.type.method'] = { bg = '#ff9900' },
-  --       --   ['@comment.lua'] = { bg = '#000000' },
-  --       -- },
-  --       dim_inactive = false,
-  --       transparent_mode = false,
-  --     })
-  --     vim.cmd("colorscheme gruvbox")
-  --   end
-  -- end,
+  "catppuccin/nvim",
+  dependencies = {
+    {
+      "ellisonleao/gruvbox.nvim",
+      lazy = false,
+      priority = 1000,
+      config = true,
+    },
+  },
+  name = "catppuccin",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    local dark_mode = is_dark_mode()
+    dark_mode = true -- Force dark mode for testing purposes
+
+    if dark_mode then
+      require("catppuccin").setup({
+        background = {
+          dark = "mocha",
+        },
+        color_overrides = {
+          mocha = {
+            -- base = "#000000",
+            -- mantle = "#000000",
+            -- crust = "#000000",
+          },
+        },
+      })
+      vim.cmd.colorscheme("catppuccin")
+    else
+      require("gruvbox").setup({
+        terminal_colors = true, -- add neovim terminal colors
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = "hard", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        -- overrides = {
+        --   ['@lsp.type.method'] = { bg = '#ff9900' },
+        --   ['@comment.lua'] = { bg = '#000000' },
+        -- },
+        dim_inactive = false,
+        transparent_mode = false,
+      })
+      vim.cmd("colorscheme gruvbox")
+    end
+  end,
 }
 -- return { -- You can easily change to a different colorscheme.
 --   -- Change the name of the colorscheme plugin below, and then
