@@ -273,6 +273,34 @@ ls.add_snippets("solidity", {
     })
   ),
   s(
+    "fn",
+    fmt(
+      [[function {}({}) {} {} {} {{
+  {}
+}}]],
+      {
+        i(1),
+        i(2),
+        c(3, {
+          t("internal"),
+          t("external"),
+          t("private"),
+          t("public"),
+        }),
+        c(4, {
+          t(""),
+          t("pure"),
+          t("view"),
+        }),
+        c(5, {
+          t(""),
+          fmt("returns ({})", { i(1) }),
+        }),
+        i(6),
+      }
+    )
+  ),
+  s(
     "ae",
     fmt([[assertEq({});]], {
       i(1),
