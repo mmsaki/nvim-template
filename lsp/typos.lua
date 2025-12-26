@@ -6,6 +6,7 @@ return {
     ".typos.toml",
     "pyproject.toml",
     "Cargo.toml",
+    ".git",
   },
   settings = {},
 }
