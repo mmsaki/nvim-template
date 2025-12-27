@@ -1,7 +1,6 @@
 {
   "LuaSnip": { "branch": "master", "commit": "458560534a73f7f8d7a11a146c801db00b081df0" },
   "catppuccin": { "branch": "main", "commit": "193e123cdbc4dd3e86db883d55349e9587f0ded6" },
-  "forgefmt.nvim": { "branch": "main", "commit": "8b1bb6498c2bfb1f583d820b9a2cc1452dbb91e2" },
   "gitsigns.nvim": { "branch": "main", "commit": "5813e4878748805f1518cee7abb50fd7205a3a48" },
   "gruvbox.nvim": { "branch": "main", "commit": "5e0a460d8e0f7f669c158dedd5f9ae2bcac31437" },
   "hererocks": { "branch": "master", "commit": "f540b58acb0952bc82f5465b3c45999d2fe39ece" },
@@ -18,6 +17,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "8dcb311b0c92d460fac00eac706abd43d94d68af" },
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
+  "present.nvim": { "branch": "master", "commit": "ce22dfaf9ebc2b37eb688e00929dfaeff126fe94" },
   "render-markdown.nvim": { "branch": "main", "commit": "b2b135347e299ffbf7f4123fb7811899b0c9f4b8" },
   "rustaceanvim": { "branch": "master", "commit": "88575b98bb9937fb9983ddec5e532b67e75ce677" },
   "stylua.nvim": { "branch": "main", "commit": "15336a99c599ff10b04d324310bc1295f5203acb" },
