@@ -8,7 +8,6 @@ return {
     local group_name = "MarkdownFormat_" .. bufnr
     local group = vim.api.nvim_create_augroup(group_name, { clear = true })
     vim.api.nvim_create_autocmd("BufWritePost", {
-      pattern = { "*.md" },
       group = group,
       buffer = bufnr,
       callback = function()
