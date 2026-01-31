@@ -21,7 +21,7 @@ function M.run(args)
 
   vim.api.nvim_buf_set_name(buf, "Forge Output")
 
-  vim.fn.termopen({ "forge", table.unpack(args) }, { cwd = root })
+  vim.fn.termopen({ "forge", unpack(args) }, { cwd = root })
 end
 
 return M

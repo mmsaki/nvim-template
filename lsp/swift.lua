@@ -1,3 +1,5 @@
+local util = require("lspconfig.util")
+
 return {
   cmd = { "sourcekit-lsp" },
   filetypes = { "swift", "objc", "objcpp" },

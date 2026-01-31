@@ -1,3 +1,4 @@
+local util = require("lspconfig.util")
 return {
   cmd = { "tailwindcss-language-server", "--stdio" },
   -- filetypes copied and adjusted from tailwindcss-intellisense

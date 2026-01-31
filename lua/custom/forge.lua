@@ -13,8 +13,8 @@ return {
             return
           end
 
-          local runner = require("forge")
-          runner.run(opts.fargs)
+          local forge = require("forge")
+          forge.run(opts.fargs)
         end, {
           nargs = "+",
           complete = function() return {} end,  -- arbitrary args
