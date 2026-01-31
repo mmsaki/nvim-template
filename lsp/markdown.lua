@@ -3,7 +3,7 @@
 return {
   cmd = { "markdown-oxide" },
   root_markers = { ".git" },
-  filetypes = { "markdown" },
+  filetypes = { "markdown", "markdownreact", "mdx" },
   on_attach = function(_, bufnr)
     local group_name = "MarkdownFormat_" .. bufnr
     local group = vim.api.nvim_create_augroup(group_name, { clear = true })

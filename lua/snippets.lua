@@ -77,8 +77,8 @@ ls.add_snippets("typescript", {
   s(
     "et",
     fmt(
-      [[export type {} = {} {};]],
-      { i(1), c(2, { t("keyof"), t("typeof") }), i(3) }
+      [[export type {} = {{ {} }}]],
+      { i(1), i(2) }
     )
   ),
   s(
@@ -151,6 +151,28 @@ export const {}: Story = {{
       }
     )
   ),
+  s("ethfn", fmt([[async {}({}): Promise<{}> {{
+    return await this.client.call({}, [{}])
+  }}]], {
+      i(1),
+      i(2),
+      i(3),
+      i(4),
+      i(5),
+    })),
+  s("ei", fmt([[export interface {} {{
+    {}
+  }}]], {
+      i(1),
+      i(2),
+    })),
+  s("dec", fmt([[declare global {{
+  {}
+}}
+
+export {{}}]], {
+      i(1),
+    })),
 })
 
 ls.add_snippets("typescriptreact", {
