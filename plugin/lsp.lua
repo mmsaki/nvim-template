@@ -1,3 +1,4 @@
+vim.cmd[[set completeopt+=menuone,noselect,popup]]
 -- configurations for all tables found in lsp/<name>.lua
 vim.lsp.config("*", {
   capabilities = {
@@ -13,7 +14,7 @@ vim.lsp.config("*", {
 vim.lsp.enable("biome")
 vim.lsp.enable("c")
 -- vim.lsp.enable("cssls")
-vim.lsp.enable("forge_lsp")
+vim.lsp.enable("solidity")
 vim.lsp.enable("js")
 vim.lsp.enable("luals")
 vim.lsp.enable("markdown")
@@ -81,6 +82,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
             },
             apply = true,
           })
+        end,
+      })
+    end
+
+    if client.name == "rust-analyzer" then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = vim.api.nvim_create_augroup("RustCargoFmt", { clear = true }),
+        pattern = "*.rs",
+        callback = function()
+          vim.lsp.buf.format({ async = false })
         end,
       })
     end
