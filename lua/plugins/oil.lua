@@ -1,0 +1,37 @@
+return {
+  "stevearc/oil.nvim",
+  lazy = false,
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+  opts = {
+    default_file_explorer = true,
+    lsp_file_methods = {
+      enabled = true,
+      timeout_ms = 1000,
+      autosave_changes = "all",
+    },
+    view_options = {
+      show_hidden = true,
+    },
+    keymaps = {
+      ["g?"] = { "actions.show_help", mode = "n" },
+      ["<CR>"] = "actions.select",
+      ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+      ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+      ["<C-t>"] = { "actions.select", opts = { tab = true } },
+      ["<C-p>"] = "actions.preview",
+      ["<C-c>"] = { "actions.close", mode = "n" },
+      ["<C-l>"] = "actions.refresh",
+      ["-"] = { "actions.parent", mode = "n" },
+      ["_"] = { "actions.open_cwd", mode = "n" },
+      ["`"] = { "actions.cd", mode = "n" },
+      ["g~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+      ["gs"] = { "actions.change_sort", mode = "n" },
+      ["gx"] = "actions.open_external",
+      ["g."] = { "actions.toggle_hidden", mode = "n" },
+      ["g\\"] = { "actions.toggle_trash", mode = "n" },
+    },
+  },
+
+}

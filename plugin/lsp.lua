@@ -7,6 +7,12 @@ vim.lsp.config("*", {
         multilineTokenSupport = true,
       },
     },
+    workspace = {
+      fileOperations = {
+        willRename = true,
+        didRename = true,
+      },
+    },
   },
   root_markers = { ".git" },
 })
@@ -14,13 +20,16 @@ vim.lsp.config("*", {
 vim.lsp.enable("biome")
 vim.lsp.enable("c")
 -- vim.lsp.enable("cssls")
-vim.lsp.enable("solidity")
+vim.lsp.enable("solidity-language-server")
 vim.lsp.enable("js")
 vim.lsp.enable("luals")
 vim.lsp.enable("markdown")
 vim.lsp.enable("pyright")
 vim.lsp.enable("ruff")
-vim.lsp.enable("rust")
+-- Rust LSP is managed by rustaceanvim (lua/plugins/rustlsp.lua).
+-- Avoid enabling the built-in "rust" config here because lsp/rust.lua does
+-- not define a cmd and causes: "invalid \"rust\" config ... cmd ... got nil".
+-- vim.lsp.enable("rust")
 vim.lsp.enable("swift")
 vim.lsp.enable("json")
 vim.lsp.enable("tailwindcss")
@@ -128,7 +137,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(event2)
           vim.lsp.buf.clear_references()
           vim.api.nvim_clear_autocmds({
-            group = "kickstart-lsp-highlight",
+            group = "lsp-highlight",
             buffer = event2.buf,
           })
         end,
