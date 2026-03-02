@@ -1,7 +1,6 @@
 return {
   name = "Solidity Language Server",
   -- cmd = { "/Users/meek/.solidity-lsp/0.1.20/bin/solidity-language-server", "--stdio" },
-  -- cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
   cmd = {
     "/Users/meek/developer/mmsaki/solidity-language-server/target/release/solidity-language-server", "--stdio"
   },
@@ -17,7 +16,7 @@ return {
         enabled = true,
         severity = {},
         only = {},
-        exclude = {"unwrapped-modifier-logic", "screaming-snake-case-const"},
+        exclude = {"unwrapped-modifier-logic", "screaming-snake-case-const", "screaming-snake-case-immutable"},
       },
       fileOperations = {
         templateOnCreate = true,
@@ -37,7 +36,6 @@ return {
 
     -- NOTE: BufWritePost allows client to save first, then run lsp formatting
     vim.api.nvim_create_autocmd("BufWritePost", {
-      pattern = { "*.sol" },
       callback = function()
         vim.lsp.buf.format()
       end,
