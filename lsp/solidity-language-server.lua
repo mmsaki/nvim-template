@@ -7,11 +7,7 @@ return {
   },
   filetypes = { "solidity" },
   root_markers = { "foundry.toml", ".git" },
-  -- init_options is sent as initializationOptions in the LSP initialize request.
-  -- settings is only available via workspace/configuration pull requests.
-  -- Both are supported by the server; init_options ensures settings are
-  -- available immediately at startup.
-  init_options = {
+  settings = {
     ["solidity-language-server"] = {
       inlayHints = {
         parameters = true,
@@ -30,7 +26,7 @@ return {
       },
       projectIndex = {
         fullProjectScan = true,
-        cacheMode = "v1",
+        cacheMode = "v2",
         includeLibs = true,
       },
     },
