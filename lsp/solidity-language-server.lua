@@ -1,18 +1,17 @@
 return {
   name = "Solidity Language Server",
-  -- Install binary from https://crates.io/crates/forge-lsp
-  -- cargo install forge-lsp
-  -- cmd = { "solc", "--lsp" },
-  -- cmd = { "/Users/meek/developer/mmsaki/lsp/target/release/forge-lsp" },
-  -- cmd = { "solidity-ls", "--stdio" },
+  -- cmd = { "/Users/meek/.solidity-lsp/0.1.20/bin/solidity-language-server", "--stdio" },
   -- cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
   cmd = {
-    "/Users/meek/developer/mmsaki/solidity-language-server/target/release/solidity-language-server",
+    "/Users/meek/developer/mmsaki/solidity-language-server/target/release/solidity-language-server", "--stdio"
   },
-  root_dir = vim.fs.root(0, { "foundry.toml", ".git" }),
   filetypes = { "solidity" },
   root_markers = { "foundry.toml", ".git" },
-  settings = {
+  -- init_options is sent as initializationOptions in the LSP initialize request.
+  -- settings is only available via workspace/configuration pull requests.
+  -- Both are supported by the server; init_options ensures settings are
+  -- available immediately at startup.
+  init_options = {
     ["solidity-language-server"] = {
       inlayHints = {
         parameters = true,
@@ -22,7 +21,17 @@ return {
         enabled = true,
         severity = {},
         only = {},
-        exclude = {"screaming-snake-case-const"},
+        exclude = {"unwrapped-modifier-logic", "screaming-snake-case-const"},
+      },
+      fileOperations = {
+        templateOnCreate = true,
+        updateImportsOnRename = true,
+        updateImportsOnDelete = true,
+      },
+      projectIndex = {
+        fullProjectScan = true,
+        cacheMode = "v1",
+        includeLibs = true,
       },
     },
   },

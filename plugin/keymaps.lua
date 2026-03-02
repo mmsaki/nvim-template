@@ -57,9 +57,9 @@ set(
   { desc = "Move Up" }
 )
 
--- nvimtree
-set("n", "<leader>t", ":NvimTreeToggle<CR>", opts)
--- set('n', '<leader>t', '<Cmd>Neotree toggle<CR>')
+-- oil file explorer
+set("n", "<leader>t", "<CMD>Oil<CR>", { desc = "Open file explorer (Oil)", noremap = true, silent = true })
+set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory (Oil)", noremap = true, silent = true })
 
 -- lspsaga
 set("n", "<leader>j", ":Lspsaga diagnostic_jump_next<cr>")
