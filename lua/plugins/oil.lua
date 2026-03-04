@@ -14,6 +14,17 @@ return {
     view_options = {
       show_hidden = true,
     },
+    git = {
+      add = function(path)
+        return false
+      end,
+      mv = function(src_path, dest_path)
+        return false
+      end,
+      rm = function(path)
+        return false
+      end,
+    },
     keymaps = {
       ["g?"] = { "actions.show_help", mode = "n" },
       ["<CR>"] = "actions.select",

@@ -26,7 +26,6 @@ return {
     local group = vim.api.nvim_create_augroup(group_name, { clear = true })
     local stylua = require("stylua")
     vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = { "*.lua" },
       group = group,
       buffer = bufnr,
       callback = function()
