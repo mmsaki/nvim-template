@@ -1,4 +1,4 @@
-vim.cmd[[set completeopt+=menuone,noselect,popup]]
+vim.cmd([[set completeopt+=menuone,noselect,popup]])
 -- configurations for all tables found in lsp/<name>.lua
 vim.lsp.config("*", {
   capabilities = {
@@ -9,8 +9,12 @@ vim.lsp.config("*", {
     },
     workspace = {
       fileOperations = {
+        willCreate = true,
+        didCreate = true,
         willRename = true,
         didRename = true,
+        willDelete = true,
+        didDelete = true,
       },
     },
   },
@@ -26,10 +30,7 @@ vim.lsp.enable("luals")
 vim.lsp.enable("markdown")
 vim.lsp.enable("pyright")
 vim.lsp.enable("ruff")
--- Rust LSP is managed by rustaceanvim (lua/plugins/rustlsp.lua).
--- Avoid enabling the built-in "rust" config here because lsp/rust.lua does
--- not define a cmd and causes: "invalid \"rust\" config ... cmd ... got nil".
--- vim.lsp.enable("rust")
+vim.lsp.enable("rust")
 vim.lsp.enable("swift")
 vim.lsp.enable("json")
 vim.lsp.enable("tailwindcss")
