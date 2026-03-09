@@ -68,6 +68,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("<C-s>", vim.lsp.buf.signature_help, "Signature Help", { "i" })
     keymap("gq", vim.lsp.buf.format, "Format")
     keymap("K", vim.lsp.buf.hover, "Hover")
+    keymap("<leader>i", vim.lsp.buf.incoming_calls, "Incoming calls")
+    keymap("<leader>o", vim.lsp.buf.outgoing_calls, "Outgoing calls")
 
     local function client_supports_method(client, method, bufnr)
       if vim.fn.has("nvim-0.11") == 1 then
