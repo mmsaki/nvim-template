@@ -1,8 +1,17 @@
 return {
   cmd = { "rust-analyzer" },
-  root_markers = { "Cargo.toml", ".git" },
+  root_markers = { "Cargo.toml" },
+  filetypes = { "rust" },
   on_attach = function(_, bufnr)
-    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = { "*.rs" },
+      callback = function()
+        vim.cmd("RustFmt")
+        -- vim.lsp.buf.format()
+      end,
+    })
   end,
   settings = {
     ["rust-analyzer"] = {
@@ -13,7 +22,7 @@ return {
         prefix = "self",
       },
       diagnostics = {
-        enable = false,
+        enable = true,
       },
       cargo = {
         buildScripts = {
@@ -22,6 +31,26 @@ return {
       },
       procMacro = {
         enable = true,
+      },
+      checkOnSave = true,
+      rustfmt = {
+        extraArgs = { "" },
+        rangeFormatting = {
+          enable = true,
+        },
+      },
+      lens = {
+        debug = { enable = true },
+        enable = true,
+        implementations = { enable = true },
+        references = {
+          adt = { enable = true },
+          enumVariant = { enable = true },
+          method = { enable = true },
+          trait = { enable = true },
+        },
+        run = { enable = true },
+        updateTest = { enable = true },
       },
     },
   },
