@@ -2,8 +2,15 @@ return {
   name = "Solidity Language Server",
   -- cmd = { "/Users/meek/.solidity-lsp/0.1.20/bin/solidity-language-server", "--stdio" },
   cmd = {
-    "/Users/meek/developer/mmsaki/solidity-language-server/target/release/solidity-language-server", "--stdio"
+    "/Users/meek/developer/mmsaki/solidity-language-server/target/release/solidity-language-server",
+    "--stdio",
   },
+  -- cmd = {
+  --   "/Users/meek/developer/mmsaki/solidity-lsp-zig/zig-out/bin/solidity_lsp_zig",
+  -- },
+  -- cmd = {
+  --   "/Users/meek/developer/mmsaki/solidity-lsp-py/.venv/bin/solidity-lsp-py",
+  -- },
   filetypes = { "solidity" },
   root_markers = { "foundry.toml", ".git" },
   settings = {
@@ -16,7 +23,11 @@ return {
         enabled = true,
         severity = {},
         only = {},
-        exclude = {"unwrapped-modifier-logic", "screaming-snake-case-const", "screaming-snake-case-immutable"},
+        exclude = {
+          "unwrapped-modifier-logic",
+          "screaming-snake-case-const",
+          "screaming-snake-case-immutable",
+        },
       },
       fileOperations = {
         templateOnCreate = true,
@@ -37,14 +48,14 @@ return {
     -- NOTE: BufWritePost allows client to save first, then run lsp formatting
     vim.api.nvim_create_autocmd("BufWritePost", {
       callback = function()
-        vim.lsp.buf.format()
+        -- vim.lsp.buf.format()
       end,
     })
 
     vim.lsp.completion.enable(true, client.id, bufnr, {
       autotrigger = true,
       convert = function(item)
-        return { abbr = item.label:gsub('%b()', '') }
+        return { abbr = item.label:gsub("%b()", "") }
       end,
     })
 
