@@ -13,6 +13,23 @@ return {
   -- },
   filetypes = { "solidity" },
   root_markers = { "foundry.toml", ".git" },
+  capabilities = {
+    textDocument = {
+      semanticTokens = {
+        multilineTokenSupport = true,
+      },
+    },
+    workspace = {
+      fileOperations = {
+        willCreate = true,
+        didCreate = true,
+        willRename = true,
+        didRename = true,
+        willDelete = true,
+        didDelete = true,
+      },
+    },
+  },
   settings = {
     ["solidity-language-server"] = {
       inlayHints = {
