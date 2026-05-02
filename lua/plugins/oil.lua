@@ -11,18 +11,29 @@ return {
       timeout_ms = 1000,
       autosave_changes = "all",
     },
+    buf_options = {
+      buflisted = false,
+      bufhidden = "hide",
+    },
     view_options = {
       show_hidden = true,
+      is_hidden_file = function(name, bufnr)
+        local m = name:match("^%.")
+        return m ~= nil
+      end,
+      is_always_hidden = function(name, bufnr)
+        return false
+      end,
     },
     git = {
       add = function(path)
-        return false
+        return true
       end,
       mv = function(src_path, dest_path)
-        return false
+        return true
       end,
       rm = function(path)
-        return false
+        return true
       end,
     },
     keymaps = {

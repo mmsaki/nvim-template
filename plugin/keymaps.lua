@@ -58,8 +58,18 @@ set(
 )
 
 -- oil file explorer
-set("n", "<leader>t", "<CMD>Oil<CR>", { desc = "Open file explorer (Oil)", noremap = true, silent = true })
-set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory (Oil)", noremap = true, silent = true })
+set(
+  "n",
+  "<leader>t",
+  "<CMD>Oil<CR>",
+  { desc = "Open file explorer (Oil)", noremap = true, silent = true }
+)
+set(
+  "n",
+  "-",
+  "<CMD>Oil<CR>",
+  { desc = "Open parent directory (Oil)", noremap = true, silent = true }
+)
 
 -- lspsaga
 set("n", "<leader>j", ":Lspsaga diagnostic_jump_next<cr>")
@@ -70,15 +80,35 @@ set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit Terminal mode" })
 
 -- DAP (Debug Adapter Protocol) keymaps
 -- Requires nvim-dap. For Solidity: place cursor on test name, then <leader>dl
-local dap_ok, dap = pcall(require, 'dap')
+local dap_ok, dap = pcall(require, "dap")
 if dap_ok then
-  set("n", "<leader>dl", dap.continue,          { desc = "[D]ebug: [L]aunch / Continue" })
-  set("n", "<leader>db", dap.toggle_breakpoint,  { desc = "[D]ebug: Toggle [B]reakpoint" })
-  set("n", "<leader>do", dap.step_over,          { desc = "[D]ebug: Step [O]ver" })
-  set("n", "<leader>di", dap.step_into,          { desc = "[D]ebug: Step [I]nto" })
-  set("n", "<leader>dO", dap.step_out,           { desc = "[D]ebug: Step [O]ut" })
-  set("n", "<leader>dB", dap.step_back,          { desc = "[D]ebug: Step [B]ack" })
-  set("n", "<leader>dr", dap.restart,            { desc = "[D]ebug: [R]estart" })
-  set("n", "<leader>dq", dap.terminate,          { desc = "[D]ebug: [Q]uit / Terminate" })
-  set("n", "<leader>dR", dap.repl.open,          { desc = "[D]ebug: Open [R]EPL console" })
+  set(
+    "n",
+    "<leader>dl",
+    dap.continue,
+    { desc = "[D]ebug: [L]aunch / Continue" }
+  )
+  set(
+    "n",
+    "<leader>db",
+    dap.toggle_breakpoint,
+    { desc = "[D]ebug: Toggle [B]reakpoint" }
+  )
+  set("n", "<leader>do", dap.step_over, { desc = "[D]ebug: Step [O]ver" })
+  set("n", "<leader>di", dap.step_into, { desc = "[D]ebug: Step [I]nto" })
+  set("n", "<leader>dO", dap.step_out, { desc = "[D]ebug: Step [O]ut" })
+  set("n", "<leader>dB", dap.step_back, { desc = "[D]ebug: Step [B]ack" })
+  set("n", "<leader>dr", dap.restart, { desc = "[D]ebug: [R]estart" })
+  set(
+    "n",
+    "<leader>dq",
+    dap.terminate,
+    { desc = "[D]ebug: [Q]uit / Terminate" }
+  )
+  set(
+    "n",
+    "<leader>dR",
+    dap.repl.open,
+    { desc = "[D]ebug: Open [R]EPL console" }
+  )
 end
