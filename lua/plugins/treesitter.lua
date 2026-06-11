@@ -1,8 +1,12 @@
 return { -- Highlight, edit, and navigate code
   "nvim-treesitter/nvim-treesitter",
-  dependencies = { "nvim-treesitter/playground" },
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    build = ":TSUpdate",
+  },
   build = ":TSUpdate",
-  main = "nvim-treesitter.configs", -- Sets main module to use for opts
+  main = "nvim-treesitter.config", -- Sets main module to use for opts
   opts = {
     ensure_installed = {
       "bash",
