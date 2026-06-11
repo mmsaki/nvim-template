@@ -1,3 +1,36 @@
+local function parse_output(proc)
+  local result = proc:wait()
+  local ret = {}
+  if result.code == 0 then
+    for line in
+      vim.gsplit(result.stdout, "\n", { plain = true, trimempty = true })
+    do
+      ret[line:gsub("/$", "")] = true
+    end
+  end
+  return ret
+end
+
+local git_ignored = setmetatable({}, {
+  __index = function(self, dir)
+    local proc = vim.system({
+      "git",
+      "ls-files",
+      "--ignored",
+      "--exclude-standard",
+      "--others",
+      "--directory",
+    }, {
+      cwd = dir,
+      text = true,
+    })
+
+    local ret = parse_output(proc)
+    rawset(self, dir, ret)
+    return ret
+  end,
+})
+
 return {
   "stevearc/oil.nvim",
   lazy = false,
@@ -6,10 +39,16 @@ return {
   },
   opts = {
     default_file_explorer = true,
+    delete_to_trash = true,
+    watch_for_changes = true,
+    use_default_keymaps = true,
     lsp_file_methods = {
       enabled = true,
       timeout_ms = 1000,
       autosave_changes = "all",
+    },
+    win_options = {
+      signcolumn = "yes:2",
     },
     buf_options = {
       buflisted = false,
@@ -18,8 +57,16 @@ return {
     view_options = {
       show_hidden = true,
       is_hidden_file = function(name, bufnr)
-        local m = name:match("^%.")
-        return m ~= nil
+        if name == ".." then
+          return false
+        end
+
+        local dir = require("oil").get_current_dir(bufnr)
+        if not dir then
+          return vim.startswith(name, ".")
+        end
+
+        return vim.startswith(name, ".") or git_ignored[dir][name]
       end,
       is_always_hidden = function(name, bufnr)
         return false
@@ -35,6 +82,7 @@ return {
       rm = function(path)
         return true
       end,
+      ignore = true,
     },
     keymaps = {
       ["g?"] = { "actions.show_help", mode = "n" },
