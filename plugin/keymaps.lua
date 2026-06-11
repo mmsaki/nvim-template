@@ -71,9 +71,16 @@ set(
   { desc = "Open parent directory (Oil)", noremap = true, silent = true }
 )
 
--- lspsaga
-set("n", "<leader>j", ":Lspsaga diagnostic_jump_next<cr>")
-set("n", "<leader>k", ":Lspsaga diagnostic_jump_prev<cr>")
+-- diagnostics: jump + float
+set("n", "<leader>j", function()
+  vim.diagnostic.jump({ count = 1, float = { border = "rounded", source = true } })
+end, { desc = "Next diagnostic" })
+set("n", "<leader>k", function()
+  vim.diagnostic.jump({ count = -1, float = { border = "rounded", source = true } })
+end, { desc = "Prev diagnostic" })
+
+-- code actions
+set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Code action" })
 
 -- Terminal escape
 set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit Terminal mode" })
